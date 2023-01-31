@@ -17,10 +17,12 @@ def create_app():
     from .auth import auth
     from .adminauth import adminauth
     from .adminview import adminview
+    from .clientview import clientview
 
     app.register_blueprint(auth, url_prefix='/')
     app.register_blueprint(adminauth,url_prefix='/admin')
     app.register_blueprint(adminview,url_prefix='/admin')
+    app.register_blueprint(clientview, url_prefix='/')
 
     from .models.user import User
     from .models.adminuser import AdminUser
