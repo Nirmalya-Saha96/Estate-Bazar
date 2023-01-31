@@ -87,3 +87,8 @@ def activeAuction():
         db.session.commit()
 
     return render_template("adminActiveAuctions.html", user=current_user)
+
+@adminview.route('/sold-records', methods=['GET'])
+@login_required
+def soldAuction():
+    return render_template("adminSoldAuctions.html", user=current_user)

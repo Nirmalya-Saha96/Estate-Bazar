@@ -5,6 +5,7 @@ class Property(db.Model):
     __tablename__ = 'properties'
     id = db.Column(db.Integer, primary_key=True)
     price = db.Column(db.Integer)
+    soldPrice = db.Column(db.Integer, default = 0)
     bedroom = db.Column(db.Integer)
     bathroom = db.Column(db.Integer)
     sqft = db.Column(db.Integer)
