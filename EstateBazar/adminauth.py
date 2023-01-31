@@ -5,6 +5,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
 
+#ML
+import numpy as np
+from keras.models import load_model
+model_loaded = load_model('model.h5')
+
 
 adminauth = Blueprint('adminauth', __name__)
 
@@ -29,10 +34,11 @@ def login():
 
     return render_template("adminLogin.html", user=current_user)
 
-
 @adminauth.route('/logout')
 @login_required
 def logout():
+    test_data = np.array([2014, 36, 4.0, 2.50, 2820, 8408])
+    print(str(model_loaded.predict(test_data.reshape(1,6), batch_size=1)))
     logout_user()
     return redirect(url_for('adminauth.login'))
 
