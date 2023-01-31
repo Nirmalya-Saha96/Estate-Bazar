@@ -16,12 +16,16 @@ def create_app():
 
     from .auth import auth
     from .adminauth import adminauth
+    from .adminview import adminview
 
     app.register_blueprint(auth, url_prefix='/')
     app.register_blueprint(adminauth,url_prefix='/admin')
+    app.register_blueprint(adminview,url_prefix='/admin')
 
     from .models.user import User
     from .models.adminuser import AdminUser
+    from .models.properties import Property
+    from .models.transactions import Transactions
 
     create_database(app)
 
@@ -31,8 +35,8 @@ def create_app():
 
     @login_manager.user_loader
     def load_user(id):
-        if(id == 777):
-            print("Admin-Login", int(id), id)
+        if(int(id) == 777):
+            print("Admin-Login")
             return AdminUser.query.get(int(id))
         else:  
             print("User-Login", int(id), id) 
