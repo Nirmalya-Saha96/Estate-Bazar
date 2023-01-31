@@ -8,3 +8,4 @@ class AdminUser(db.Model, UserMixin):
     username = db.Column(db.String(150),primary_key=True)
     email = db.Column(db.String(150),unique=True)
     password = db.Column(db.String(150))
+    properties = db.relationship('Property',backref='adminuser')
