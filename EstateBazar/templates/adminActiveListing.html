@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Bootstrap Navbar Dropdown Login and Signup Form with Social Buttons</title>
+<title>Estate Bazar</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Varela+Round">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -282,8 +282,8 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
 					
 					</ul>
 					<div class="card-body">
-						<button type= "button" class="btn btn-primary" name="active">Active</button>
-						<!-- <button type= "button" class="btn btn-primary" name="inactive">Inactive</button> -->
+						<button type= "button" class="btn btn-primary" name="active" onClick="activateAuction({{property.id}})">Active</button>
+						<button type= "button" class="btn btn-primary" name="active" onClick="deleteAuction({{property.id}})">Delete</button>
 					</div>
 			  </div>
 			</div>

@@ -20,11 +20,9 @@ BASE_HEADERS = {
 
 adminview = Blueprint('adminview', __name__)
 
-@adminview.route('/', methods=['GET', 'POST'])
+@adminview.route('/', methods=['GET', 'POST', 'PUT', 'DELETE'])
 @login_required
 def index():
-    print("curr", current_user.properties)
-
     if(request.method == 'POST'):
         url="https://www.realtor.com/realestateandhomes-search/Seattle_WA"
 
@@ -55,4 +53,28 @@ def index():
 
         flash('Scrapped Data Successfully', category='success')
 
+    if(request.method == 'PUT'):
+        property = json.loads(request.data)
+        propertyId = property['propertyId']
+
+        propertyObj = Property.query.get(propertyId)
+        propertyObj.isActive = True
+        flash('Activated auction', category='success')
+        db.session.commit()
+
+    if(request.method == 'DELETE'):
+        property = json.loads(request.data)
+        propertyId = property['propertyId']
+        propertyObj = Property.query.get(propertyId)
+
+        flash('Deleted auction', category='success')
+        db.session.delete(propertyObj)
+        db.session.commit()
+
     return render_template("adminActiveListing.html", user=current_user)
+
+
+@adminview.route('/active-auctions', methods=['GET', 'POST'])
+@login_required
+def activeAuction():
+    return render_template("adminActiveAuctions.html", user=current_user)
