@@ -224,12 +224,6 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
 			
             
 			<a href="/admin/active-auctions" class="nav-item nav-link">Active Listing</a>
-			<select name="places" class="btn btn-primary dropdown-toggle sign-up-btn" id="places">
-				<option value="place">Places</option>
-				<option value="seattle">Seattle</option>
-				<option value="renton">Renton</option>
-				
-			  </select>
 		</div>
 		
 		
@@ -237,10 +231,6 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
     <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
         <div class="navbar-nav">
             <a href="/admin/logout" class="btn btn-primary dropdown-toggle sign-up-btn" >Logout</a>
-        </div>
-			&nbsp; &nbsp;
-		<div class="navbar-nav">
-            <button type="button" class="btn btn-primary dropdown-toggle sign-up-btn" onClick="scrapper()"> Scrape Data</button>
         </div>
     </div>
 
@@ -267,7 +257,7 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
 <br>
 <div class="grid-container">
 	{% for property in user.properties %}
-		{% if property.isActive==False and property.isSold==False %}
+		{% if property.isActive==True and property.isSold==False %}
 			<div class="grid-item">
 
 				<div class="card" style="width: 18rem;">
@@ -282,7 +272,7 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
 					
 					</ul>
 					<div class="card-body">
-						<button type= "button" class="btn btn-primary" name="active" onClick="activateAuction({{property.id}})">Active</button>
+						<button type= "button" class="btn btn-primary" name="active" onClick="deActivateAuction({{property.id}})">End Auction</button>
 						<button type= "button" class="btn btn-primary" name="active" onClick="deleteAuction({{property.id}})">Delete</button>
 					</div>
 			  </div>
