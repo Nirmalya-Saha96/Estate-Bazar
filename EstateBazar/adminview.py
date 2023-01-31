@@ -23,50 +23,36 @@ adminview = Blueprint('adminview', __name__)
 @adminview.route('/', methods=['GET', 'POST'])
 @login_required
 def index():
-    print(current_user)
+    print("curr", current_user.properties)
 
     if(request.method == 'POST'):
-      state = request.form['places']
+        url="https://www.realtor.com/realestateandhomes-search/Seattle_WA"
 
- 
-
-
-    url="https://www.realtor.com/realestateandhomes-search/"+state
-
-
-    html_text = requests.get(url=url,headers=BASE_HEADERS)
-    soup = BeautifulSoup(html_text.content,'html.parser')
-    homes = soup.find_all('li', class_='jsx-1881802087 component_property-card')
-  
-    for i in range(0,5,1):
-        home = homes[i]
-        print(home)
-
-
-        price = home.find('span',class_ = 'Price__Component-rui__x3geed-0 gipzbd').text
-        beds = home.select('[data-label=pc-meta-beds]')[0].get_text(separator = ' ')
-        bath = home.select('[data-label=pc-meta-baths]')[0].get_text(separator = ' ')
-        sqft = home.select('[data-label=pc-meta-sqft]')[0].get_text(separator = ' ')
-        address = home.select('[data-label=pc-address]')[0].get_text()
-
-        
-        
-        if home.select('img')[0]["src"].startswith('data',0,4):
-            img = home.select('img')[1]["src"]
-        else:
-            img = home.select('img')[0]["src"]
+        html_text = requests.get(url=url,headers=BASE_HEADERS)
+        soup = BeautifulSoup(html_text.content,'html.parser')
+        homes = soup.find_all('li', class_='jsx-1881802087 component_property-card')
     
+        for i in range(0,5,1):
+            home = homes[i]
 
-        home = Property(price = price,bedroom = beds,bathroom = bath,sqft = sqft,address = address,imgSrc=img,)
+            price = home.find('span',class_ = 'Price__Component-rui__x3geed-0 gipzbd').text
+            beds = home.select('[data-label=pc-meta-beds]')[0].get_text(separator = ' ')
+            bath = home.select('[data-label=pc-meta-baths]')[0].get_text(separator = ' ')
+            sqft = home.select('[data-label=pc-meta-sqft]')[0].get_text(separator = ' ')
+            address = home.select('[data-label=pc-address]')[0].get_text()
 
-        db.session.add(home)
-        db.session.commit()
+            if home.select('img')[0]["src"].startswith('data',0,4):
+                if(home.select('img')[1]["src"] != 'https://static.rdc.moveaws.com/images/common/photos-coming-soon.svg'):
+                    img = home.select('img')[1]["src"]
+            else:
+                if(home.select('img')[0]["src"] != 'https://static.rdc.moveaws.com/images/common/photos-coming-soon.svg'):
+                    img = home.select('img')[0]["src"]
+        
+            home = Property(price = price,bedroom = beds,bathroom = bath,sqft = sqft,address = address,imgSrc=img, soldBy=current_user.id)
 
+            db.session.add(home)
+            db.session.commit()
 
-
-
+        flash('Scrapped Data Successfully', category='success')
 
     return render_template("adminActiveListing.html", user=current_user)
-
-
-

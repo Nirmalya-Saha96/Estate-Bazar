@@ -199,12 +199,14 @@ body {
 	}
 }
 </style>
+
 <script>
 // Prevent dropdown menu from closing when click inside the form
 $(document).on("click", ".action-buttons .dropdown-menu", function(e){
 	e.stopPropagation();
 });
 </script>
+
 </head> 
 
 
@@ -234,13 +236,11 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
 	</div>
     <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
         <div class="navbar-nav">
-            <a href="#" class="btn btn-primary dropdown-toggle sign-up-btn" onclick="home.html">Logout</a>
-
+            <a href="/admin/logout" class="btn btn-primary dropdown-toggle sign-up-btn" >Logout</a>
         </div>
 			&nbsp; &nbsp;
 		<div class="navbar-nav">
-            <a href="#" class="btn btn-primary dropdown-toggle sign-up-btn" onclick="home.html"> Scrape Data</a>
-
+            <button type="button" class="btn btn-primary dropdown-toggle sign-up-btn" onClick="scrapper()"> Scrape Data</button>
         </div>
     </div>
 
@@ -265,66 +265,36 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
 {% endif %} {% endfor %} {% endif %} {% endwith %}
 
 <br>
-<div class="grid-container"><div class="grid-item">
-    <div class="card" style="width: 18rem;">
-		<img class="card-img-top" src="E:\SHREYA FILES\S-PICTURES\times\IMG_4003.JPG" alt="Card image cap">
-		<div class="card-body">
-		  <h5 class="card-title">Property Price: </h5>
-		  <p class="card-text">Property Details: </p>
-		</div>
-		<ul class="list-group list-group-flush">
-		  <li class="list-group-item">Property area: </li>
-		  <li class="list-group-item">Address:</li>
-		  
-		</ul>
-		<div class="card-body">
-		  <input type= "radio" name="active">Active &nbsp; &nbsp; &nbsp; &nbsp;
-		  <input type= "radio" name="inactive">Inactive<br>
-		  
-		</div>
-	  </div></div>
+<div class="grid-container">
+	{% for property in user.properties %}
+		{% if property.isActive==False and property.isSold==False %}
+			<div class="grid-item">
 
-	  <div class="grid-item">
-	  <div class="card" style="width: 18rem;">
-		<img class="card-img-top" src="E:\SHREYA FILES\S-PICTURES\times\IMG_4003.JPG" alt="Card image cap">
-		<div class="card-body">
-		  <h5 class="card-title">Property Price: </h5>
-		  <p class="card-text">Property Details: </p>
-		</div>
-		<ul class="list-group list-group-flush">
-		  <li class="list-group-item">Property area: </li>
-		  <li class="list-group-item">Address:</li>
-		  
-		</ul>
+				<div class="card" style="width: 18rem;">
+					<img class="card-img-top" src="{{property.imgSrc}}" alt="Card image cap">
+					<div class="card-body">
+					<h5 class="card-title">Property Price: {{property.price}}</h5>
+					<p class="card-text">Bedrooms: {{property.bedroom}} Bathrooms: {{property.bathroom}} </p>
+					</div>
+					<ul class="list-group list-group-flush">
+					<li class="list-group-item">Property area: {{property.sqft}}</li>
+					<li class="list-group-item">Address: {{property.address}}</li>
+					
+					</ul>
+					<div class="card-body">
+						<button type= "button" class="btn btn-primary" name="active">Active</button>
+						<!-- <button type= "button" class="btn btn-primary" name="inactive">Inactive</button> -->
+					</div>
+			  </div>
+			</div>
+		{% endif %}
+	{% endfor %}
 
-		<div class="card-body">
-		  <input type= "radio" name="active">Active &nbsp; &nbsp; &nbsp; &nbsp;
-		  <input type= "radio" name="inactive">Inactive<br>
-		  
-		</div>
-	  </div></div>
-
-	  <div class="grid-item">
-	  <div class="card" style="width: 18rem;">
-		<img class="card-img-top" src="E:\SHREYA FILES\S-PICTURES\times\IMG_4003.JPG" alt="Card image cap">
-		<div class="card-body">
-		  <h5 class="card-title">Property Price: </h5>
-		  <p class="card-text">Property Details: </p>
-		</div>
-		<ul class="list-group list-group-flush">
-		  <li class="list-group-item">Property area: </li>
-		  <li class="list-group-item">Address:</li>
-		  
-		</ul>
-		<div class="card-body">
-		  <input type= "radio" name="active">Active &nbsp; &nbsp; &nbsp; &nbsp;
-		  <input type= "radio" name="inactive">Inactive<br>
-		  
-		</div>
-	  </div></div></div>
-
-	  
-    
 </div>
+
+	<script
+      type="text/javascript"
+      src="{{ url_for('static', filename='index.js') }}"
+    ></script>
 </body>
 </html>
