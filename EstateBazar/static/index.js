@@ -23,4 +23,13 @@ function deleteAuction(propertyId) {
     window.location.href = "/admin";
   });
 }
+
+function deActivateAuction(propertyId) {
+  fetch("/admin/active-auctions", {
+    method: "PUT",
+    body: JSON.stringify({ propertyId: propertyId })
+  }).then((_res) => {
+    window.location.href = "/admin/active-auctions";
+  });
+}
   

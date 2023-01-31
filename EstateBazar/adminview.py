@@ -74,7 +74,16 @@ def index():
     return render_template("adminActiveListing.html", user=current_user)
 
 
-@adminview.route('/active-auctions', methods=['GET', 'POST'])
+@adminview.route('/active-auctions', methods=['GET', 'PUT'])
 @login_required
 def activeAuction():
+    if(request.method == 'PUT'):
+        property = json.loads(request.data)
+        propertyId = property['propertyId']
+
+        propertyObj = Property.query.get(propertyId)
+        propertyObj.isActive = False
+        flash('Activated auction', category='success')
+        db.session.commit()
+
     return render_template("adminActiveAuctions.html", user=current_user)
