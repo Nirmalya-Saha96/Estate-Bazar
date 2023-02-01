@@ -5,9 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
 
-
 adminauth = Blueprint('adminauth', __name__)
-
 
 @adminauth.route('/login', methods=['GET', 'POST'])
 def login():
@@ -28,7 +26,6 @@ def login():
             flash('Email does not exist.', category='error')
 
     return render_template("adminLogin.html", user=current_user)
-
 
 @adminauth.route('/logout')
 @login_required

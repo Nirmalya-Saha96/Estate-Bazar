@@ -199,12 +199,20 @@ body {
 	}
 }
 </style>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+<script type="text/javascript" charset="utf-8">
 
-<script>
-// Prevent dropdown menu from closing when click inside the form
-$(document).on("click", ".action-buttons .dropdown-menu", function(e){
-	e.stopPropagation();
-});
+	var socket;
+	$(document).ready(function(){
+		socket = io.connect('http://127.0.0.1:5000/details');
+		socket.on('connect', function() {
+			socket.emit('join', {});
+		});
+		$('#send').click(function(e) {
+				socket.emit('left');
+		});
+	});
 </script>
 
 </head> 
@@ -272,7 +280,7 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
 					
 					</ul>
 					<div class="card-body">
-						<button type= "button" class="btn btn-primary" name="active" onClick="deActivateAuction({{property.id}})">End Auction</button>
+						<button type= "button" id="send" class="btn btn-primary" name="active" onClick="deActivateAuction({{property.id}})">End Auction</button>
 						<button type= "button" class="btn btn-primary" name="active" onClick="deleteAuction({{property.id}})">Delete</button>
 					</div>
 			  </div>
