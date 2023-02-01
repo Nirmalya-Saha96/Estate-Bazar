@@ -54,6 +54,7 @@ def clientDetails():
     session['userId'] = current_user.id
     session['room'] = propertyId
     session['username'] = current_user.username
+    session['propertyId'] = propertyId
 
     test_data = np.array([2014, 36, int(num), int(num2), hsqrt, int(num3)])
     prediction = str(model_loaded.predict(test_data.reshape(1,6), batch_size=1))
