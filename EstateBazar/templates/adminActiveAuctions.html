@@ -204,13 +204,14 @@ body {
 <script type="text/javascript" charset="utf-8">
 
 	var socket;
+	var pid = {{property.id}};
 	$(document).ready(function(){
 		socket = io.connect('http://127.0.0.1:5000/details');
 		socket.on('connect', function() {
 			socket.emit('join', {});
 		});
 		$('#send').click(function(e) {
-				socket.emit('left');
+				socket.emit('left', {msg: pid });
 		});
 	});
 </script>

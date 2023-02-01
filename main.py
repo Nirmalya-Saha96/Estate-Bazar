@@ -1,4 +1,4 @@
-from EstateBazar import create_app
+from EstateBazar import create_app,db
 
 #ML
 import numpy as np
@@ -11,6 +11,8 @@ from flask_session import Session
 from flask import Blueprint, render_template, request, flash, jsonify
 from flask import redirect, url_for, session
 from flask_socketio import SocketIO, join_room, leave_room, emit
+
+from .EstateBazar.models import Property
 
 app = create_app()
 Session(app)
@@ -47,11 +49,26 @@ if __name__ == '__main__':
 
 
     @socketio.on('left', namespace='/details')
-    def left():
-        # room = session.get('room')
-        # username = session.get('username')
-        # leave_room(room)
-        # session.clear()
-        # emit('status', {'msg': username + ' has left the room.'}, room=room)
+    def left(message):
+        propertyId = message['msg']
+
+        minValue = -1
+        maxBid = -1
+        userId = -1
+        for element in data[str(propertyId)]:
+            if element['bid']>minValue:
+                maxBid = element['bid']
+                userId = element['userId']
+        
+        propertyObj = Property.query.get(propertyId)
+        propertyObj.broughtBy = userId
+        propertyObj.soldPrice = maxBid
+        propertyObj.isSold = True
+
+        db.session.commit()
+
+        for i in range(20):
+            data[str(i)] = []
+
 
     socketio.run(app, debug=True)
