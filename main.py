@@ -12,7 +12,7 @@ from flask import Blueprint, render_template, request, flash, jsonify
 from flask import redirect, url_for, session
 from flask_socketio import SocketIO, join_room, leave_room, emit
 
-from .EstateBazar.models import Property
+from EstateBazar.models.properties import Property
 
 app = create_app()
 Session(app)
@@ -40,35 +40,39 @@ if __name__ == '__main__':
         room = session.get('room')
         propertyId = session.get('propertyId')
         userId = session.get('userId')
-        obj = {}
-        obj['userId'] = userId
-        obj['bid'] = int(message['msg'])
-        data[str(propertyId)].append(obj)
-        print(data)
-        emit('message', {'msg': session.get('username') + 'bids: ' + message['msg']}, room=room)
-
-
-    @socketio.on('left', namespace='/details')
-    def left(message):
-        propertyId = message['msg']
-
-        minValue = -1
-        maxBid = -1
-        userId = -1
-        for element in data[str(propertyId)]:
-            if element['bid']>minValue:
-                maxBid = element['bid']
-                userId = element['userId']
-        
         propertyObj = Property.query.get(propertyId)
-        propertyObj.broughtBy = userId
-        propertyObj.soldPrice = maxBid
-        propertyObj.isSold = True
+        if propertyObj.isActive == True:
+            obj = {}
+            obj['userId'] = userId
+            obj['bid'] = int(message['msg'])
+            data[str(propertyId)].append(obj)
+            print(data)
+            emit('message', {'msg': session.get('username') + 'bids: ' + message['msg']}, room=room)
+        else:
+            minValue = -1
+            maxBid = -1
+            userId = -1
+            for element in data[str(propertyId)]:
+                if element['bid']>minValue:
+                    maxBid = element['bid']
+                    userId = element['userId']
 
-        db.session.commit()
+            propertyObj.broughtBy = userId
+            propertyObj.soldPrice = maxBid
+            propertyObj.isSold = True
+            db.session.commit()
 
-        for i in range(20):
-            data[str(i)] = []
+            propertyObj2 = Property.query.get(propertyId)
+            print(propertyObj2.isSold)
+
+            for i in range(20):
+                data[str(i)] = []
+
+    # @socketio.on('left', namespace='/details')
+    # def left(message):
+    #     propertyId = message['msg']
+
+        
 
 
     socketio.run(app, debug=True)
