@@ -4,15 +4,15 @@
 
 ### Problem that you are solving
 
-    Real Estate Auctioning is one of the most prominent activities in this world, but due to more virtual events, not all auctions can occur offline; hence, there is a need to make all auctions available virtually, so that buyers can get his dream property under one place.
+Real Estate Auctioning is one of the most prominent activities in this world, but due to more virtual events, not all auctions can occur offline; hence, there is a need to make all auctions available virtually, so that buyers can get his dream property under one place.
 
-    Here in **ESTATE BAZAR** not ****only we provide the required marketplace but also, through out **AI algorithm** we provide suggestive prediction over valuation for breaking over and under valuation which is evident in these online events  
+Here in **ESTATE BAZAR** not ****only we provide the required marketplace but also, through out **AI algorithm** we provide suggestive prediction over valuation for breaking over and under valuation which is evident in these online events  
 
 ### Who are the users?
 
-    Target users are the buyers/brokers who want to buy estate properties at their preferred location at the best available price without searching thorough various other sites  
+Target users are the buyers/brokers who want to buy estate properties at their preferred location at the best available price without searching thorough various other sites  
 
-    Through our AI ALGORITHM our target users gets expanded to users who does not have proper knowledge over valuation
+Through our AI ALGORITHM our target users gets expanded to users who does not have proper knowledge over valuation
 
 ### Mention top 3 features about your product
 
@@ -21,6 +21,8 @@
 - Scrapped on-sale hosted estate properties to provide the buyer with most possible option for their dream house at their preferred location
 
 ### Create a basic workflow of your app
+
+https://user-images.githubusercontent.com/81407181/216064318-cd665149-ae07-4f32-b795-dc9ddb8305ac.mp4
 
 [https://www.figma.com/file/UkyElEZqTRxFKWucGtnLbE/Untitled?node-id=0%3A1&t=iCrAQe43HMIWG3I3-1](https://www.figma.com/file/UkyElEZqTRxFKWucGtnLbE/Untitled?node-id=0%3A1&t=iCrAQe43HMIWG3I3-1)
 
