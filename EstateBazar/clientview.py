@@ -59,18 +59,4 @@ def clientDetails():
     test_data = np.array([2014, 36, int(num), int(num2), hsqrt, int(num3)])
     prediction = str(model_loaded.predict(test_data.reshape(1,6), batch_size=1))
 
-    return render_template('clientDetails.html', property=propertyObj, prediction=prediction)
-
-
-# @clientview.route('/buy_property',methods=['POST'])
-# @login_required
-# def buyProperty():
-#     if(request.method == 'POST'):
-#         clientid = request.form['clientid']
-#         propertyid = request.form['propertyid']
-#         price = request.form['price']
-
-#         new_transaction = Transaction(clientid=clientid, propertyid=propertyid,price=price)
-
-#         db.session.add(new_transaction)
-#         db.session.commit()  
+    return render_template('clientDetails.html', property=propertyObj, prediction=prediction, user=current_user) 

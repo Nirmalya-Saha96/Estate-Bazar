@@ -205,9 +205,31 @@ body {
 	}
 }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
 <script type="text/javascript" charset="utf-8">
 
             var socket;
+			var uId = {{user.id}};
+			var pid = {{property.id}};
+			var account = null;
+			var contract = null
+			const ABI = [{"inputs":[{"internalType":"string","name":"clientId","type":"string"},{"internalType":"string","name":"propertyId","type":"string"},{"internalType":"uint256","name":"value","type":"uint256"}],"name":"buy","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"deploy","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"get","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"}];
+			const ADDRESS = '0xBC82eC51886c9E7Bfc9c47a113932Ce4CaBD588F';
+
+			(async () => {
+				if(window.ethereum) {
+					await window.ethereum.send('eth_requestAccounts');
+					window.web3 = new Web3(window.ethereum);
+
+					var accounts = await web3.eth.getAccounts();
+					account = accounts[0];
+					console.log("Account", account);
+
+					contract = new web3.eth.Contract(ABI, ADDRESS);
+				}
+			})();
+
+
             $(document).ready(function(){
                 socket = io.connect('http://127.0.0.1:5000/details');
                 socket.on('connect', function() {
@@ -222,6 +244,15 @@ body {
                     $('#chat').val($('#chat').val() + data.msg + '\n');
                     $('#chat').scrollTop($('#chat')[0].scrollHeight);
                 });
+				socket.on('won', async function(data) {
+					var userId = data.userId;
+					var price = data.price;
+					if(userId === uId) {
+						const trnsaction = await contract.methods.buy(data.userId, pid, data.price).send({ from: account });
+						const address = await contract.methods.get().call();
+						console.log("transaction", address);
+					}
+				});
                 $('#send').click(function(e) {
                         text = $('#text').val();
                         $('#text').val('');
