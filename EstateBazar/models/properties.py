@@ -15,4 +15,5 @@ class Property(db.Model):
     soldBy = db.Column(db.Integer,db.ForeignKey('adminuser.id'))
     address = db.Column(db.String(250))
     imgSrc = db.Column(db.String(250))
+    contractAddress = db.Column(db.String(250), default="")
     transaction = db.relationship('Transactions', backref='properties')

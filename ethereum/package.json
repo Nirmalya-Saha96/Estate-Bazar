@@ -1,0 +1,17 @@
+{
+  "name": "hackaweb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@truffle/hdwallet-provider": "^2.0.3",
+    "fs-extra": "^10.0.0",
+    "solc": "^0.8.11",
+    "web3": "^1.7.0"
+  }
+}

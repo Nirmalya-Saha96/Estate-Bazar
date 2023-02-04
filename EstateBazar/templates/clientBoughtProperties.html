@@ -197,14 +197,15 @@ body {
 	.navbar .input-group {
 		width: 100%;
 	}
+	.heading {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 }
 </style>
 
-<script>
-// Prevent dropdown menu from closing when click inside the form
-$(document).on("click", ".action-buttons .dropdown-menu", function(e){
-	e.stopPropagation();
-});
+<script type="text/javascript" charset="utf-8">
 </script>
 
 </head> 
@@ -252,6 +253,7 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
 {% endif %} {% endfor %} {% endif %} {% endwith %}
 
 <br>
+<h1 style="display: flex; justify-content: center; align-items: center" class="heading">Bought Estates</h1>
 <div class="grid-container">
 	{% for property in properties %}
 		{% if property.isSold==True %}
@@ -269,6 +271,9 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
                         <li class="list-group-item">Sold out price: {{property.soldPrice}}</li>
 					</ul>
 					<div class="card-body">
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item">Contract Address: {{property.contractAddress}}</li>
+						</ul>
 					</div>
 			  </div>
 			</div>

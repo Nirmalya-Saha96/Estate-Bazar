@@ -63,7 +63,7 @@ if __name__ == '__main__':
             db.session.commit()
 
             propertyObj2 = Property.query.get(propertyId)
-            print(propertyObj2.isSold)
+            emit('won', {'userId': userId, 'price': maxBid}, room=room)
 
             for i in range(20):
                 data[str(i)] = []

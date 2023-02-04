@@ -197,6 +197,11 @@ body {
 	.navbar .input-group {
 		width: 100%;
 	}
+	.heading {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 }
 </style>
 
@@ -253,6 +258,7 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
 
 <br>
 <div class="grid-container">
+	<h1 style="display: flex; justify-content: center; align-items: center" class="heading">Live Auctions</h1>
 	{% for property in properties %}
 		{% if property.isActive==True and property.isSold==False %}
 			<div class="grid-item">
