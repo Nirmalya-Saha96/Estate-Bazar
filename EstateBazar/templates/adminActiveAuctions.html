@@ -197,6 +197,11 @@ body {
 	.navbar .input-group {
 		width: 100%;
 	}
+	.heading {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 }
 </style>
 
@@ -249,6 +254,7 @@ body {
 {% endif %} {% endfor %} {% endif %} {% endwith %}
 
 <br>
+<h1 style="display: flex; justify-content: center; align-items: center" class="heading">Live Auctions</h1>
 <div class="grid-container">
 	{% for property in user.properties %}
 		{% if property.isActive==True and property.isSold==False %}

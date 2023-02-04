@@ -197,6 +197,11 @@ body {
 	.navbar .input-group {
 		width: 100%;
 	}
+	.heading {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 }
 </style>
 
@@ -255,6 +260,7 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
 {% endif %} {% endfor %} {% endif %} {% endwith %}
 
 <br>
+<h1 style="display: flex; justify-content: center; align-items: center" class="heading">Sold Estates</h1>
 <div class="grid-container">
 	{% for property in user.properties %}
 		{% if property.isSold==True %}
@@ -272,8 +278,9 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
                         <li class="list-group-item">Sold out price: {{property.soldPrice}}</li>
 					</ul>
 					<div class="card-body">
-						<!-- <button type= "button" class="btn btn-primary" name="active" onClick="deActivateAuction({{property.id}})">End Auction</button>
-						<button type= "button" class="btn btn-primary" name="active" onClick="deleteAuction({{property.id}})">Delete</button> -->
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item">Contract Address: {{property.contractAddress}}</li>
+						</ul>
 					</div>
 			  </div>
 			</div>

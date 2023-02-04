@@ -250,7 +250,12 @@ body {
 					if(userId === uId) {
 						const trnsaction = await contract.methods.buy(data.userId, pid, data.price).send({ from: account });
 						const address = await contract.methods.get().call();
-						console.log("transaction", address);
+						fetch("/transaction", {
+							method: "POST",
+							body: JSON.stringify({ price: data.price, clientId: data.userId, propertyId: pid, id: address })
+						  }).then((_res) => {
+							window.location.href = "/bought_properties";
+						  });
 					}
 				});
                 $('#send').click(function(e) {

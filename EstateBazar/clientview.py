@@ -5,6 +5,7 @@ from .models.transactions import Transactions
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
+import json
 
 #ML
 import numpy as np
@@ -17,14 +18,14 @@ clientview = Blueprint('clientview', __name__)
 @login_required
 def clientIndex():
     properties = Property.query.all()
-    print(properties)
     return render_template("clientActiveAuctions.html", properties=properties)
 
 
 @clientview.route('/bought_properties',methods=['GET'])
 @login_required
 def boughtProperties():
-    properties = Property.query.filter_by(broughtBy=current_user.id).all()    
+    properties = Property.query.filter_by(broughtBy=current_user.id).all()   
+
     return render_template('clientBoughtProperties.html', properties=properties)
 
 
@@ -60,3 +61,21 @@ def clientDetails():
     prediction = str(model_loaded.predict(test_data.reshape(1,6), batch_size=1))
 
     return render_template('clientDetails.html', property=propertyObj, prediction=prediction, user=current_user) 
+
+
+
+@clientview.route('/transaction', methods=['POST'])
+@login_required
+def transactionBlockChain():
+    transaction = json.loads(request.data)
+    clientId = transaction['clientId']
+    propertyId = transaction['propertyId']
+    price = transaction['price']
+    id = transaction['id']
+
+    print(clientId, propertyId, price, id)
+
+    propertyObj = Property.query.get(propertyId)
+    propertyObj.contractAddress = id
+
+    db.session.commit()

@@ -178,6 +178,11 @@ body {
 	position: relative;
 	top: 1px;
 }
+.heading {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 @media (min-width: 1200px){
 	.form-inline .input-group {
 		width: 300px;
@@ -265,6 +270,7 @@ $(document).on("click", ".action-buttons .dropdown-menu", function(e){
 {% endif %} {% endfor %} {% endif %} {% endwith %}
 
 <br>
+<h1 style="display: flex; justify-content: center; align-items: center" class="heading">Scrapped Listed Auctions</h1>
 <div class="grid-container">
 	{% for property in user.properties %}
 		{% if property.isActive==False and property.isSold==False %}
