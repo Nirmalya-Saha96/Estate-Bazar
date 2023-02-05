@@ -19,6 +19,14 @@ Through our AI ALGORITHM our target users gets expanded to users who does not ha
 - Prices of the property are predicted by the **ARTIFICIAL NETURAL NETWORKS** machine-learning model to prevent over and under valuation.
 - Seamless Real-time auction with low latency
 - Scrapped on-sale hosted estate properties to provide the buyer with most possible option for their dream house at their preferred location
+- All sold records are stored in BlockChain Smart Contract for creating a non-fungible token
+
+### Security
+
+- All the payment transactions are done in ETHEREUM BLOCKCHAIN
+- Once the estate is sold the record get's written in the BlockChain
+- providing an unalterable selling records.
+- and safe payment methods by Smart Contract to remove Frauds.
 
 ### Create a basic workflow of your app
 
