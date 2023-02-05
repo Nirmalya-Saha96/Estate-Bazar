@@ -30,7 +30,9 @@ Through our AI ALGORITHM our target users gets expanded to users who does not ha
 
 ### Create a basic workflow of your app
 
-https://user-images.githubusercontent.com/81407181/216064318-cd665149-ae07-4f32-b795-dc9ddb8305ac.mp4
+
+https://user-images.githubusercontent.com/81407181/216840395-f794c1a1-f084-4f27-bf79-ee54f5cf797f.mp4
+
 
 [https://www.figma.com/file/UkyElEZqTRxFKWucGtnLbE/Untitled?node-id=0%3A1&t=iCrAQe43HMIWG3I3-1](https://www.figma.com/file/UkyElEZqTRxFKWucGtnLbE/Untitled?node-id=0%3A1&t=iCrAQe43HMIWG3I3-1)
 
