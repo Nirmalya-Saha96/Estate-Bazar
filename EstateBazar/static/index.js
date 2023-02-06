@@ -1,5 +1,5 @@
 function scrapper() {
-    fetch("/admin", {
+    fetch("/admin/", {
       method: "POST"
     }).then((_res) => {
       window.location.href = "/admin";
@@ -7,7 +7,7 @@ function scrapper() {
 }
 
 function activateAuction(propertyId) {
-  fetch("/admin", {
+  fetch("/admin/", {
     method: "PUT",
     body: JSON.stringify({ propertyId: propertyId })
   }).then((_res) => {
@@ -16,7 +16,7 @@ function activateAuction(propertyId) {
 }
 
 function deleteAuction(propertyId) {
-  fetch("/admin", {
+  fetch("/admin/", {
     method: "DELETE",
     body: JSON.stringify({ propertyId: propertyId })
   }).then((_res) => {
@@ -32,4 +32,3 @@ function deActivateAuction(propertyId) {
     window.location.href = "/admin/active-auctions";
   });
 }
-  

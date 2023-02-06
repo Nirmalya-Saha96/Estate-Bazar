@@ -44,6 +44,12 @@ https://user-images.githubusercontent.com/81407181/216840395-f794c1a1-f084-4f27-
 
 ***[API Documentation](https://silent-option-8b8.notion.site/API-Docs-and-Workflow-54c042f3574040ed94bf881457d3316d)***
 
+## RUNNING DOCKER
+
+```
+$ docker pull nirmalyasaha/estate-bazar:0.0.1.RELEASE
+$ docker run -d -p 5000:5000 nirmalyasaha/estate-bazar:0.0.1.RELEASE
+```
 
 ### List down all the features that your app has
 
