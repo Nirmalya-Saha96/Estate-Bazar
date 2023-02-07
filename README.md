@@ -20,6 +20,7 @@ Through our AI ALGORITHM our target users gets expanded to users who does not ha
 - Seamless Real-time auction with low latency
 - Scrapped on-sale hosted estate properties to provide the buyer with most possible option for their dream house at their preferred location
 - All sold records are stored in BlockChain Smart Contract for creating a non-fungible token
+- Dockerised the whole application : https://hub.docker.com/r/nirmalyasaha/estate-bazar
 
 ### Security
 
@@ -35,6 +36,25 @@ https://user-images.githubusercontent.com/81407181/216840395-f794c1a1-f084-4f27-
 
 
 [https://www.figma.com/file/UkyElEZqTRxFKWucGtnLbE/Untitled?node-id=0%3A1&t=iCrAQe43HMIWG3I3-1](https://www.figma.com/file/UkyElEZqTRxFKWucGtnLbE/Untitled?node-id=0%3A1&t=iCrAQe43HMIWG3I3-1)
+
+### Running Docker
+
+***Build and Deploy***
+
+```
+$ git checkout NS_Docker
+$ docker build -t nirmalyasaha/estate-bazar:1.0.0.RELEASE .
+$ docker push nirmalyasaha/estate-bazar:1.0.0.RELEASE
+```
+
+***Pulling and Running***
+
+```
+$ docker pull nirmalyasaha/estate-bazar:1.0.0.RELEASE
+$ docker run -d -p 5000:5000 nirmalyasaha/estate-bazar:1.0.0.RELEASE
+```
+
+**NOTE**: public docker repository/image is deployed in https://hub.docker.com/r/nirmalyasaha/estate-bazar
 
 ### DOCUMENTATIONS 
 
