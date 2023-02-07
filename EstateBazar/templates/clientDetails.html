@@ -232,7 +232,7 @@ body {
 
 
             $(document).ready(function(){
-                socket = io.connect('https://5000-nirmalyasah-estatebazar-7vyp6uu7sl5.ws-us85.gitpod.io/details');
+                socket = io.connect(`${window.location.href}`);
                 socket.on('connect', function() {
                     socket.emit('join', {});
                     console.log("joined")
